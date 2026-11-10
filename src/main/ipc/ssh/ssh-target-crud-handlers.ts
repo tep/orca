@@ -184,11 +184,14 @@ export function registerSshTargetCrudHandlers(): void {
 
   ipcMain.handle('ssh:removeTarget', (_event, args: { id: string }) => removeSshTarget(args.id))
 
-  ipcMain.handle('ssh:importConfig', async (_event, args?: { reAdopt?: boolean }) => {
-    const { targets, repoReadoptions } =
-      await getSshTargetRegistryStore()!.importFromSshConfig(args)
-    return { targets, repoReadoptions: publishRepoReadoptions(repoReadoptions) }
-  })
+  ipcMain.handle(
+    'ssh:importConfig',
+    async (_event, args?: { reAdopt?: boolean; automatic?: boolean }) => {
+      const { targets, repoReadoptions } =
+        await getSshTargetRegistryStore()!.importFromSshConfig(args)
+      return { targets, repoReadoptions: publishRepoReadoptions(repoReadoptions) }
+    }
+  )
 
   // Prefill the add-host form without importing targets; bulk sync belongs to Settings.
   ipcMain.handle('ssh:listConfigHosts', (_event, args?: SshConfigHostListArgs) => {

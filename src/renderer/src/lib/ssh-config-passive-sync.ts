@@ -8,7 +8,7 @@ let lastStartedAt = Number.NEGATIVE_INFINITY
 // An import persists hosts before they are listed; a failed listing must be retried next time.
 let metadataRefreshPending = false
 
-/** Sync ~/.ssh/config without reAdopt so deleted hosts stay deleted; passive triggers keep menus fresh without opening SSH settings. */
+/** Sync ~/.ssh/config without reAdopt so deleted hosts stay deleted; main skips it when sshConfigAutoImport is off. */
 export function syncSshConfigTargetsPassively(): Promise<void> {
   if (inFlight) {
     return inFlight
@@ -20,7 +20,7 @@ export function syncSshConfigTargetsPassively(): Promise<void> {
   lastStartedAt = now
   inFlight = (async () => {
     try {
-      const result = await window.api.ssh.importConfig()
+      const result = await window.api.ssh.importConfig({ automatic: true })
       const store = useAppStore.getState()
       store.recordSshRepoReadoptions(result.repoReadoptions)
       // Unchanged config is the common case; skip the extra listing and store write.

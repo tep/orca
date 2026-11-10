@@ -20,6 +20,7 @@ export function createMockStore() {
   const removedTombstones: RemovedSshTargetTombstone[] = []
   const reassignments: { oldTargetId: string; newTargetId: string }[] = []
   let generationCounter = 0
+  const settings: { sshConfigAutoImport?: boolean } = {}
 
   const dropTombstone = (oldTargetId: string) => {
     const kept = removedTombstones.filter((t) => t.oldTargetId !== oldTargetId)
@@ -32,6 +33,8 @@ export function createMockStore() {
       generationCounter += 1
       return generationCounter
     }),
+    settings,
+    getSettings: vi.fn(() => settings),
     getSshTargets: vi.fn(() => [...targets]),
     getSshTarget: vi.fn((id: string) => targets.find((t) => t.id === id)),
     getRepos: vi.fn(() => [...repos]),

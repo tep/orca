@@ -81,6 +81,7 @@ vi.mock('../../ui/dropdown-menu', () => {
   }
 })
 vi.mock('./targets/SshTargetsEmptyState', () => ({ SshTargetsEmptyState: () => null }))
+vi.mock('./SshConfigAutoImportSetting', () => ({ SshConfigAutoImportSetting: () => null }))
 
 let root: ReturnType<typeof createRoot> | null = null
 let container: HTMLDivElement | null = null

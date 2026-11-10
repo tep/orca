@@ -10,6 +10,7 @@ import { SshTargetsEmptyState } from './targets/SshTargetsEmptyState'
 import { SshTargetDestructiveActions } from './targets/SshTargetDestructiveActions'
 import { SshHostsHeaderActions, SshHostsListToolbar } from './SshPaneToolbar'
 import { SshHostsHeaderPortal } from './ssh-hosts-header-slot'
+import { SshConfigAutoImportSetting } from './SshConfigAutoImportSetting'
 import { useSshTargetTests } from './targets/use-ssh-target-tests'
 import { SshRestoreRemovedHostsDialog } from './targets/SshRestoreRemovedHostsDialog'
 import { useSshConfigSync } from './targets/use-ssh-config-sync'
@@ -274,6 +275,7 @@ export function SshPane({ addTargetIntentSignal }: SshPaneProps): React.JSX.Elem
           onRestoreRemoved={() => setRestoreOpen(true)}
         />
       </SshHostsHeaderPortal>
+      <SshConfigAutoImportSetting />
       <SshTargetDestructiveActions
         onRemove={handleRemove}
         removeQuietly={removeTargetQuietly}

@@ -78,6 +78,18 @@ describe('SshConnectionStore', () => {
 
       expect(sshStore.listSuppressedSshConfigAliases()).toEqual([])
     })
+
+    it('skips only the automatic import when sshConfigAutoImport is off', async () => {
+      mockStore.settings.sshConfigAutoImport = false
+      loadUserSshConfigMock.mockReturnValue([{ host: 'build-1' }])
+      sshConfigHostsToTargetsMock.mockReturnValue([candidate({ configHost: 'build-1' })])
+
+      expect((await sshStore.importFromSshConfig({ automatic: true })).targets).toEqual([])
+      expect(mockStore.addSshTarget).not.toHaveBeenCalled()
+
+      const explicit = (await sshStore.importFromSshConfig()).targets
+      expect(explicit.map((t) => t.configHost)).toEqual(['build-1'])
+    })
   })
 
   describe('deleted config host tombstones', () => {

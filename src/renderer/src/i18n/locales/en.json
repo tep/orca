@@ -1096,6 +1096,14 @@
         "connected": "Connected",
         "reconnecting": "Reconnecting…",
         "reconnection-failed": "Reconnection failed"
+      },
+      "configAutoImport": {
+        "title": "Import hosts from ~/.ssh/config automatically",
+        "description": "Adds new hosts at launch and when the hosts menu opens. Sync and Add host still work when this is off.",
+        "keywords": {
+          "automatic": "automatic",
+          "sync": "sync"
+        }
       }
     },
     "shortcuts": {

@@ -21,6 +21,7 @@ import type { WindowMaterialSettings } from './window-material'
 import type { EditorSaveSettings } from './editor-save-settings'
 import type { NestedWorkerDepthSettings } from './orchestration/workers/nested-worker-depth'
 import type { SshRemoteControlSettings } from './ssh-remote-control-settings'
+import type { SshConfigAutoImportSettings } from './ssh-config-auto-import-settings'
 import type { AgentWorkspaceTrustSettings } from './agent-launch/permissions/agent-workspace-trust-decision'
 import type { KeybindingGlobalSettings } from './keybindings/global-settings'
 
@@ -28,6 +29,7 @@ import type { KeybindingGlobalSettings } from './keybindings/global-settings'
 export type GlobalSettingsBase = AntigravityChatAuthSettings &
   EmulatorOpeningSettings &
   SshRemoteControlSettings &
+  SshConfigAutoImportSettings &
   ClaudeAgentViewSettings &
   NativeChatGlobalSettings &
   NativeChatIdleStopSettings &

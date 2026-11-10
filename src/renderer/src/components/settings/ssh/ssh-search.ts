@@ -1,8 +1,30 @@
+import type { SettingsSearchEntry } from '../search/settings-search'
 import { translate } from '@/i18n/i18n'
 import { translateSearchKeyword } from '../search/settings-search-keywords'
 import { createLocalizedCatalog } from '@/i18n/localized-catalog'
 
+export const getSshConfigAutoImportEntries = createLocalizedCatalog((): SettingsSearchEntry[] => [
+  {
+    title: translate(
+      'settings.ssh.configAutoImport.title',
+      'Import hosts from ~/.ssh/config automatically'
+    ),
+    description: translate(
+      'settings.ssh.configAutoImport.description',
+      'Adds new hosts at launch and when the hosts menu opens. Sync and Add host still work when this is off.'
+    ),
+    keywords: [
+      ...translateSearchKeyword('auto.components.settings.ssh.search.7efd17e816', 'ssh'),
+      ...translateSearchKeyword('auto.components.settings.ssh.search.5220501141', 'config'),
+      ...translateSearchKeyword('auto.components.settings.ssh.search.3b12e064a4', 'import'),
+      ...translateSearchKeyword('settings.ssh.configAutoImport.keywords.automatic', 'automatic'),
+      ...translateSearchKeyword('settings.ssh.configAutoImport.keywords.sync', 'sync')
+    ]
+  }
+])
+
 export const getSshPaneSearchEntries = createLocalizedCatalog(() => [
+  ...getSshConfigAutoImportEntries(),
   {
     title: translate('auto.components.settings.ssh.search.53ae83cb55', 'SSH connections'),
     description: translate('auto.components.settings.ssh.search.74c6d90d78', 'Manage SSH hosts.'),

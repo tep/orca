@@ -2,6 +2,7 @@ import type { Store } from '../../persistence/loading-store/store'
 import type { SshRepoReadoption, SshTarget } from '../../../shared/ssh-types'
 
 import { normalizeSshConfigAlias } from '../../../shared/ssh-config-alias'
+import { isSshConfigAutoImportEnabled } from '../../../shared/ssh-config-auto-import-settings'
 import { isLegacyConfigImportTarget } from '../../../shared/ssh-target-source'
 import { loadUserSshConfigWithText, sshConfigHostsToTargets } from '../config/ssh-config-parser'
 
@@ -162,7 +163,11 @@ export class SshConnectionStore {
    */
   importFromSshConfig(options?: {
     reAdopt?: boolean
+    automatic?: boolean
   }): Promise<{ targets: SshTarget[]; repoReadoptions: SshRepoReadoption[] }> {
+    if (options?.automatic && !isSshConfigAutoImportEnabled(this.store.getSettings())) {
+      return Promise.resolve({ targets: [], repoReadoptions: [] })
+    }
     return this.enqueueRouteRun(async () => {
       // Explicit Import clears tombstones; passive on-open sync preserves them.
       const restoredAliases = new Set<string>()

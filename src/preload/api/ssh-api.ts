@@ -21,7 +21,11 @@ export type SshApi = {
   addTarget: (args: { target: SshTargetCreateInput }) => Promise<SshTargetAddResult>
   updateTarget: (args: { id: string; updates: SshTargetUpdateInput }) => Promise<SshTarget>
   removeTarget: (args: { id: string }) => Promise<void>
-  importConfig: (args?: { reAdopt?: boolean }) => Promise<SshConfigImportResult>
+  /** `automatic`: a passive sync no user asked for; the sshConfigAutoImport setting can skip it. */
+  importConfig: (args?: {
+    reAdopt?: boolean
+    automatic?: boolean
+  }) => Promise<SshConfigImportResult>
   listConfigHosts: (args?: SshConfigHostListArgs) => Promise<SshConfigHostListResult>
   resolveConfigHost: (args: { alias: string }) => Promise<SshConfigHostResolution | null>
   /** `automatic`: a connect no user asked for; it never lifts a cancelled sign-in. */

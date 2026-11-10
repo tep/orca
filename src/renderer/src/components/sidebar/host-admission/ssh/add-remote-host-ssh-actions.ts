@@ -25,7 +25,7 @@ type SshApi = {
   addTarget: (args: { target: SshTargetCreateInput }) => Promise<SshTargetAddResult>
   listConfigHosts: (args?: SshConfigHostListArgs) => Promise<SshConfigHostListResult>
   resolveConfigHost: (args: { alias: string }) => Promise<SshConfigHostResolution | null>
-  importConfig: (args?: { reAdopt?: boolean }) => Promise<{
+  importConfig: (args?: { reAdopt?: boolean; automatic?: boolean }) => Promise<{
     targets: SshTarget[]
     repoReadoptions: SshRepoReadoption[]
   }>

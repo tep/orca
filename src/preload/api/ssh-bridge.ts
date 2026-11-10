@@ -35,8 +35,10 @@ export const sshApi = {
   removeTarget: (args: { id: string }): Promise<void> =>
     ipcRenderer.invoke('ssh:removeTarget', args),
 
-  importConfig: (args?: { reAdopt?: boolean }): Promise<SshConfigImportResult> =>
-    ipcRenderer.invoke('ssh:importConfig', args),
+  importConfig: (args?: {
+    reAdopt?: boolean
+    automatic?: boolean
+  }): Promise<SshConfigImportResult> => ipcRenderer.invoke('ssh:importConfig', args),
 
   listConfigHosts: (args?: SshConfigHostListArgs): Promise<SshConfigHostListResult> =>
     ipcRenderer.invoke('ssh:listConfigHosts', args),
