@@ -11,7 +11,7 @@ export const getSshConfigAutoImportEntries = createLocalizedCatalog((): Settings
     ),
     description: translate(
       'settings.ssh.configAutoImport.description',
-      'Adds new hosts at launch and when the hosts menu opens. Sync and Add host still work when this is off.'
+      'Adds new hosts at launch, when the hosts menu opens, and when SSH settings open. Sync and Add host still work when this is off.'
     ),
     keywords: [
       ...translateSearchKeyword('auto.components.settings.ssh.search.7efd17e816', 'ssh'),

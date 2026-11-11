@@ -1099,7 +1099,7 @@
       },
       "configAutoImport": {
         "title": "Import hosts from ~/.ssh/config automatically",
-        "description": "Adds new hosts at launch and when the hosts menu opens. Sync and Add host still work when this is off.",
+        "description": "Adds new hosts at launch, when the hosts menu opens, and when SSH settings open. Sync and Add host still work when this is off.",
         "keywords": {
           "automatic": "automatic",
           "sync": "sync"
